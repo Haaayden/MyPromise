@@ -1,0 +1,25 @@
+{
+  "name": "my-promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "promises-aplus-tests promise/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haaayden/MyPromise.git"
+  },
+  "keywords": [
+    "promise"
+  ],
+  "author": "Haaayden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haaayden/MyPromise/issues"
+  },
+  "homepage": "https://github.com/Haaayden/MyPromise#readme",
+  "dependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}
