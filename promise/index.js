@@ -193,4 +193,45 @@ MyPromise.deferred = function () {
   return result
 }
 
+MyPromise.all = function(promiseList) {
+  return new MyPromise((resolve, reject) => {
+    let res = []
+    const count = promiseList.length
+    let current = 0
+
+    if (current >= count) return resolve(res)
+
+    promiseList.forEach((promise, index) => {
+      MyPromise.resolve(promise).then((value) => {
+        res[index] = value
+        current++
+        if (current >= count) resolve(res)
+      }, reason => {
+        reject(reason)
+      })
+    })
+
+  })
+}
+
+MyPromise.race = function(promiseList) {
+  return new MyPromise((resolve, reject) => {
+
+    // 如果传的迭代是空的，则返回的 promise 将永远等待。
+    if (promiseList.length <= 0) return
+
+    promiseList.forEach((promise) => {
+      MyPromise.resolve(promise).then(resolve, reject)
+    })
+
+  })
+}
+
+MyPromise.prototype.finally = function(callback) {
+  return this.then(
+    value => MyPromise.resolve(callback()).then(() => value),
+    reason => MyPromise.resolve(callback()).then(() => { throw reason }),
+  )
+}
+
 module.exports = MyPromise
