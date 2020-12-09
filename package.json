@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "promises-aplus-tests promise/index"
+    "test": "promises-aplus-tests promise/index",
+    "demo": "node demo.js"
   },
   "repository": {
     "type": "git",

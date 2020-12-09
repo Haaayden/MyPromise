@@ -15,6 +15,7 @@ function MyPromise(exec) {
   const self = this
 
   function resolve(value) {
+    if (value instanceof MyPromise) return resolvePromise(this, value, resolve, reject)
     if (self.status === PENDING) {
       self.status = FULFILLED
       self.value = value
@@ -181,6 +182,17 @@ function resolvePromise(promise, x, resolve, reject) {
   resolve(x)
 
 
+}
+
+
+MyPromise.resolve = function(parameter) {
+  if(parameter instanceof MyPromise) {
+    return parameter
+  }
+
+  return new MyPromise(function(resolve) {
+    resolve(parameter)
+  })
 }
 
 MyPromise.deferred = function () {
